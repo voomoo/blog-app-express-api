@@ -1,4 +1,5 @@
 const Blogs = require("../models/Blogs.model");
+const ErrorResponse = require("../utils/errorResponse.utils");
 
 //@DESC Get all Blogs
 //@Route GET /api/v1/blogs
@@ -35,7 +36,9 @@ exports.getSingleBlog = async (req, res, next) => {
             data: blog,
         });
     } catch (error) {
-        res.status(400).json({ success: false });
+        next(
+            new ErrorResponse(`Blog not found with id of ${req.params.id}`, 404)
+        );
     }
 };
 
@@ -51,7 +54,9 @@ exports.createBlog = async (req, res, next) => {
             data: blog,
         });
     } catch (error) {
-        res.status(400).json({ success: false });
+        next(
+            new ErrorResponse(`Blog not found with id of ${req.params.id}`, 404)
+        );
     }
 };
 
@@ -75,7 +80,9 @@ exports.updateBlog = async (req, res, next) => {
             data: blog,
         });
     } catch (error) {
-        res.status(400).json({ success: false });
+        next(
+            new ErrorResponse(`Blog not found with id of ${req.params.id}`, 404)
+        );
     }
 };
 
@@ -96,6 +103,8 @@ exports.deleteBlog = async (req, res, next) => {
             data: blog,
         });
     } catch (error) {
-        res.status(400).json({ success: false });
+        next(
+            new ErrorResponse(`Blog not found with id of ${req.params.id}`, 404)
+        );
     }
 };
