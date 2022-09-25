@@ -1,6 +1,7 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const blogRoutes = require("./routes/blogs.routes");
+const morgan = require("morgan");
 
 //Load env vars
 dotenv.config({
@@ -8,6 +9,10 @@ dotenv.config({
 });
 
 const app = express();
+
+if (process.env.NODE_ENV === "development") {
+    app.use(morgan("dev"));
+}
 
 app.use("/api/v1/blogs", blogRoutes);
 
