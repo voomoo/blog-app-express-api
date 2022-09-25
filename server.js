@@ -4,6 +4,7 @@ const blogRoutes = require("./routes/blogs.routes");
 const morgan = require("morgan");
 const connectDB = require("./config/db.config");
 const colors = require("colors");
+const errorHanndler = require("./middleware/error.middleware");
 
 //Load env vars
 dotenv.config({
@@ -22,6 +23,8 @@ if (process.env.NODE_ENV === "development") {
 }
 
 app.use("/api/v1/blogs", blogRoutes);
+
+app.use(errorHanndler);
 
 const PORT = process.env.PORT || 5000;
 
