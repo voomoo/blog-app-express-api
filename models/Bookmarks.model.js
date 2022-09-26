@@ -22,6 +22,26 @@ const BookmarkSchema = new mongoose.Schema({
     category: {
         type: String,
         required: [true, "Must provide a category"],
+        enum: [
+            "Programming",
+            "Social Media",
+            "Videos",
+            "Shopping",
+            "Design",
+            "News",
+        ],
+    },
+    isFavorite: {
+        type: Boolean,
+        default: false,
+    },
+    isTrash: {
+        type: Boolean,
+        default: false,
+    },
+    image: {
+        type: String,
+        default: "no-image.png",
     },
     createdAt: {
         type: Date,
