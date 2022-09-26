@@ -1,10 +1,10 @@
 const express = require("express");
 const dotenv = require("dotenv");
-const blogRoutes = require("./routes/blogs.routes");
+const bookmarkRoutes = require("./routes/bookmarks.routes");
 const morgan = require("morgan");
 const connectDB = require("./config/db.config");
 const colors = require("colors");
-const errorHanndler = require("./middleware/error.middleware");
+const errorHandler = require("./middleware/error.middleware");
 
 //Load env vars
 dotenv.config({
@@ -22,9 +22,9 @@ if (process.env.NODE_ENV === "development") {
     app.use(morgan("dev"));
 }
 
-app.use("/api/v1/blogs", blogRoutes);
+app.use("/api/v1/bookmarks", bookmarkRoutes);
 
-app.use(errorHanndler);
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
